@@ -1,0 +1,1052 @@
+--- .\archive.py
+import os
+
+output_file = "directory_contents.txt"
+
+with open(output_file, "w", encoding="utf-8") as out:
+    for root, dirs, files in os.walk("."):
+        for filename in files:
+            if filename.lower().endswith(".exe"):  # skip .exe files
+                continue
+            filepath = os.path.join(root, filename)
+            out.write(f"--- {filepath}\n")
+            try:
+                with open(filepath, "r", encoding="utf-8", errors="replace") as f:
+                    contents = f.read()
+                out.write(contents + "\n\n")
+            except Exception as e:
+                out.write(f"[Error reading file: {e}]\n\n")
+
+print(f"Done! File saved as {output_file}")
+
+
+--- .\directory_contents.txt
+
+
+--- .\arrays\array.txt
+using System;
+
+class A {
+	shared void Main() {
+		int[] arr = new int[100];
+				
+		arr[0] = 1;
+		
+		arr[1] = arr[0] + 2;
+		
+		Console.WriteLine(arr[1]);
+	}
+}
+
+--- .\casts\explicit-casts.txt
+using System;
+
+class A {
+	shared void Main() {
+		int a = (int)3.141592;
+		int b = (int)3.141592d;
+		char c = (char)2.7271;
+		char d = 'a';
+		double e = d;
+		
+		Console.WriteLine(a);
+		Console.WriteLine(b);
+		Console.WriteLine(c);
+		Console.WriteLine(d);
+		Console.WriteLine(e);
+	}
+}
+
+
+--- .\classes\abstract-specifier.txt
+abstract class Base {
+public:
+	abstract void AbstractMethod();
+}
+
+class Derived(Base) {
+public:
+	virtual void AbstractMethod() {
+		System.Console.WriteLine("Derived::AbstractMethod");
+	}
+}
+
+class A {
+	shared void Main() {
+		Base b = new Derived();
+		b.AbstractMethod();
+	}
+}
+
+--- .\classes\access-scopes.txt
+class AccessScopes {
+public:
+	this() {}
+	void PublicMethod() {}	
+	int public_field; 
+
+family:
+	void ProtectedMethod() {}
+	
+private:
+	int private_field;
+	
+public:	
+	int public_field_2;		
+}
+
+class A {
+	shared void Main() {
+		new A();
+	}
+}
+
+--- .\classes\class-access-modifier.txt
+class ImplicitlyPublicClass {
+
+}
+
+public class ExplicitlyPublicClass {
+
+}
+
+internal class InternalClass {
+
+}
+
+class A {
+	shared void Main() {}
+}
+
+--- .\classes\constructor-chaining.txt
+using System;
+
+class Base {
+public:
+	this() {
+		Console.WriteLine("Base::this()");
+	}
+
+	this(float f) : this() {
+		Console.WriteLine("Base::this(float)");
+	}
+	
+	this(int i, float f) : this(f) {
+		Console.WriteLine("Base::this(int,float)");
+	}
+}
+
+class Derived(Base) {
+public:
+	this(char c) : this(3.14) {
+		Console.WriteLine("Derived::this(char)");
+	}
+	
+	this(float f) : base(10, f) {
+		Console.WriteLine("Derived::this(float)");
+	}
+}
+
+class A {
+	shared void Main() {
+		new Derived('a');
+	}
+}
+
+--- .\classes\final-class.txt
+final class Sealed {
+
+}
+
+class A {
+	shared void Main() {
+	
+	}
+}
+
+--- .\classes\final-method.txt
+class Base {
+public:
+	final void FinalMethod() {
+		
+	}
+}
+
+class A {
+	shared void Main() {
+		
+	}
+}
+
+--- .\classes\inheritance.txt
+class Base {
+public:
+	void Method() {
+		System.Console.WriteLine("Base::Method");
+	}
+}
+
+class Derived(Base) {
+
+}
+
+class A {
+	shared void Main() {
+		new Derived().Method();
+	}
+}
+
+--- .\classes\nested-declarations.txt
+class Parent {
+public:
+	class Nested {
+	public:
+		void Method() {
+			Parent p = new Parent();
+			p.private_field = 1;
+			System.Console.WriteLine(p.private_field);
+		}
+	}
+
+private:
+	int private_field;
+}
+
+class A {
+public:
+	shared void Main() {
+		Parent.Nested n = new Parent.Nested();
+		n.Method();
+	}
+}
+
+--- .\classes\null.txt
+class A {
+	shared void Main() {
+		A a = null;
+		System.Console.WriteLine(a == null);
+	}
+}
+
+--- .\classes\properties.txt
+class A {
+public:
+	int Length {
+		get { return _len; }
+		set { _len = value; }
+	}
+	
+	this() {
+		_len = 10;
+	}
+	
+	shared void Main() {
+		A a = new A();
+		
+		a.Length = 123;
+		int i = a.Length;
+		
+		System.Console.WriteLine(i);
+	}
+	
+private:
+	int _len;
+}
+
+--- .\classes\virtual-specifier.txt
+class Base {
+public:
+	virtual void VirtualMethod() {
+		System.Console.WriteLine("Base::VirtualMethod");
+	}
+}
+
+class Derived(Base) {
+public:
+	virtual void VirtualMethod() {
+		System.Console.WriteLine("Derived::VirtualMethod");
+	}
+}
+
+class A {
+	shared void Main() {
+		Base b = new Derived();
+		b.VirtualMethod();
+	}
+}
+
+--- .\comments\comments.txt
+class A {
+	shared void Main() {
+		// single-line comment
+		
+		/* multi-line
+		comment */
+		
+		System.Console.WriteLine(/* inline comment */"Hello World!");
+	}
+}
+
+--- .\control-structures\do-while-loop.txt
+class A {
+	shared void Main() {
+		int i = 0;
+		
+		do {
+			++i;
+			System.Console.WriteLine("iteration " + i.ToString());
+		} while(i < 10);
+								
+		do
+			System.Console.WriteLine("Infinite loop");
+		while(true);
+	}
+}
+
+--- .\control-structures\for-loop.txt
+using System;
+
+class A {
+	shared void Main() {
+		for(int i = 0, j = 10; i < 10 && j < 20; ++i) {
+			Console.WriteLine("iteration {0}", i.ToString());
+			j += 4;
+		}
+		
+		for(int i = 0; i < 10; ++i) {
+			if(i % 2 == 0) 
+				continue;
+			if(i % 6 == 5)
+				break;
+		}
+		
+		for(int i = 1; i < 7; i += 2)
+			Console.WriteLine("i = {0}", i.ToString());
+				
+		for(;;) {
+			Console.WriteLine("Infinite loop");
+		}
+	}
+}
+
+--- .\control-structures\if-else.txt
+using System;
+
+class A {
+	shared void Main() {
+		int i = 5;
+		
+		if(i > 5) {
+			Console.WriteLine("i is greater than 5");
+		} else if(i == 5) {
+			Console.WriteLine("i is equal to 5");
+		} else {
+			Console.WriteLine("i is less than 5");
+		}
+	}
+}
+
+--- .\control-structures\while-loop.txt
+class A {
+	shared void Main() {
+		int i = 0;
+		
+		while(i < 10) {
+			System.Console.WriteLine("iteration " + i.ToString());
+			++i;
+		}
+		
+		int j = 5;
+		while(j > 0)
+			--j;
+						
+		while(true) {
+			System.Console.WriteLine("Infinite loop");
+		}
+	}
+}
+
+--- .\delegates\delegate.txt
+using System;
+
+function void MyDelegate(string a, float b);
+
+class A {
+public:		
+	shared void Main() {
+		A a = new A();
+		
+		MyDelegate f = new MyDelegate(a.Method);
+		
+		f.Invoke("Hello World", 3.141592);
+						
+		MyDelegate f2 = new MyDelegate(a.Method2) + new MyDelegate(A.Method3);
+		f2 += f;
+		
+		f2.Invoke("Hello World", 3.141592);
+	}
+	
+	void Method(string a, float b) {
+		Console.WriteLine("A::Method(string,float)");
+	}
+	
+	float Method(int z) {
+		Console.WriteLine("A::Method(int)");
+	}
+	
+	void Method2(string a, float b) {
+		Console.WriteLine("A::Method2(string,float)");
+	}
+	
+	shared void Method3(string a, float b) {
+		Console.WriteLine("A::Method3(string,float)");
+	}
+}
+
+--- .\euclides\gcd.txt
+class Euclides {
+	int GCD(int a, int b) {
+		while(b != 0) {
+			int t = b;
+			b = a % b;
+			a = t;
+		}
+		return a;
+	}
+		
+	shared void Main() {
+		System.Console.WriteLine(new Euclides().GCD(135, 63));
+	}
+}
+
+--- .\exception-handling\try-catch-finally.txt
+using System;
+
+class MyException(ApplicationException) {
+public:
+	this(string msg) : base(msg) {}
+}
+
+class A {
+public:
+	shared void Main() {
+	
+		Console.WriteLine("Before try");
+	
+		try {
+			DangerousMethod();
+		} catch(MyException e) {
+			Console.Error.WriteLine("catch(MyException) " + e);
+		} catch(Exception e) {
+			Console.Error.WriteLine("catch(Exception) " + e);
+		} finally {
+			Console.WriteLine("finally");
+		}
+		
+		Console.WriteLine("After try");
+	}
+	
+	shared void DangerousMethod() {
+		raise new MyException("Error code: 123");
+	}
+}
+
+--- .\fibonacci\fibonacci.txt
+class Fibonacci {
+	int F(int n) {
+		if(n == 0)
+			return 0;
+		if(n <= 2)
+			return 1;
+		return F(n-1) + F(n-2);
+	}
+	
+	shared void Main() {
+		System.Console.WriteLine(new Fibonacci().F(9));
+	}
+}
+
+--- .\guess-the-number\game.txt
+using System;
+
+class GuessTheNumber {
+	void Play() {
+		int guess = -1, answer = new Random((int)DateTime.Now.Ticks).Next()%10+1, lives = 3;
+		Console.Write("Guess the number (1-10): ");
+		while(lives > 0 && guess != answer) {
+			guess = Convert.ToInt32(Console.ReadLine());
+			if(guess == answer) {
+				Console.WriteLine("Correct! ");
+			} else {
+				if(guess < answer) {
+					Console.Write("{0} is too small. ", guess.ToString());
+				} else {
+					Console.Write("{0} is too big. ", guess.ToString());
+				}
+				--lives;
+				if(lives == 0) {
+					Console.WriteLine("You lose");
+				} else {
+					Console.Write("Try again: ");
+				}
+			}
+		}
+	}
+	
+	shared void Main() {
+		new GuessTheNumber().Play();
+	}
+}
+
+--- .\hanoi\hanoi.txt
+class Hanoi {	
+	void Solve(int n, char a, char b, char c) {
+		if(n > 0) {
+			Solve(n-1, a, c, b);
+			System.Console.WriteLine("{0} -> {1}", a.ToString(), c.ToString());
+			Solve(n-1, b, a, c);
+		}
+	}
+	
+	shared void Main() {
+		new Hanoi().Solve(3, 'A', 'B', 'C');
+	}
+}
+
+--- .\interfaces\implementing-interface.txt
+using System;
+
+interface I {
+	void MethodA();
+	
+	int MethodB(int i, float f);	
+}
+
+class A : I {
+public:
+	virtual void MethodA() {
+		Console.WriteLine("A::MethodA");
+	}
+	
+	virtual int MethodB(int i, float f) {
+		Console.WriteLine("A::MethodB");
+		return 1;
+	}
+	
+	shared void Main() {
+		I i = new A();
+		i.MethodA();
+		i.MethodB(5, 3.141592);
+	}
+}
+
+--- .\interfaces\implementing-interfaces.txt
+using System;
+
+interface IA {
+	void MethodA();
+}
+
+interface IB {
+	void MethodB();
+}
+
+class A : IA, IB {
+public:
+	virtual void MethodA() {
+		Console.WriteLine("A::MethodA");
+	}
+	
+	virtual void MethodB() {
+		Console.WriteLine("A::MethodB");
+	}
+	
+	shared void Main() {
+		A a = new A();
+		IA ia = a;
+		ia.MethodA();
+		
+		IB ib = a;
+		ib.MethodB();
+	}
+}
+
+--- .\interfaces\interface-inheritance.txt
+using System;
+
+interface IBaseA {
+	void MethodA();
+}
+
+interface IBaseB {
+	void MethodB();
+}
+
+interface IDerived : IBaseA, IBaseB {
+	void MethodC();
+}
+
+class A : IDerived {
+public:
+	virtual void MethodA() {
+		Console.WriteLine("A::MethodA");
+	}
+	
+	virtual void MethodB() {
+		Console.WriteLine("A::MethodB");
+	}
+	
+	virtual void MethodC() {
+		Console.WriteLine("A::MethodC");
+	}
+	
+	shared void Main() {
+		A a = new A();
+		IDerived i = a;
+		i.MethodA();
+		i.MethodB();
+		i.MethodC();
+	}
+}
+
+--- .\interfaces\interface.txt
+interface I {
+	void MethodA();
+	
+	int MethodB(int i, float f);	
+}
+
+--- .\names\names.txt
+class $void {}
+
+class $class($void) {	
+	shared void Main() {	
+		int $int = 1;
+	}
+}
+
+--- .\namespaces\nested-namespaces.txt
+namespace A {	
+	namespace B {
+		using System;
+		
+		class Class {
+		public:
+			this() {
+				Console.WriteLine("A::B::Class");
+			}
+		}
+	}
+}
+
+namespace B {
+	using System;
+	typedef C = System.Console;
+	
+	namespace A {
+		class Class {
+		public:
+			this() {
+				C.WriteLine("B::A::Class");
+			}
+		}	
+	}
+	
+	namespace X {
+		class Class {
+		public:
+			this() {
+				C.WriteLine("B::X::Class");
+			}
+		}
+	}
+}
+
+class Program {
+	shared void Main() {
+		new A.B.Class();
+		new B.A.Class();
+		new B.X.Class();
+	}
+}
+
+--- .\operators\complex-assignment.txt
+class A {
+	shared void Main() {
+		int i;
+		
+		i = 1; // 1		
+		
+		i += 5; // 6
+		
+		i -= 3; // 3
+		
+		i *= 4; // 12
+		
+		i /= 2; // 6
+		
+		i %= 4; // 2
+		
+		i &= 6; // 2
+		
+		i |= 1; // 3
+		
+		i ^= 2; // 1
+		
+		i <<= 2; // 4
+		
+		i >>= 1; // 2		
+	}
+}
+
+--- .\operators\concatenation.txt
+using System;
+
+class A {
+	shared void Main() {
+		string a = "Hello";		
+		Console.WriteLine(a + " World!");
+		
+		char c = 'c';
+		int i = 1;
+		Console.WriteLine("a" + "b" + c.ToString() + i.ToString());
+	}
+}
+
+--- .\operators\null-coalescing-operator.txt
+class A {
+	void Method() {
+		System.Console.WriteLine("A::Method");
+	}
+
+	shared void Main() {
+		A a = null;
+		A b = null;
+		A c = new A();
+		
+		A d = a ?? b ?? c;
+		d.Method();
+	}
+}
+
+--- .\operators\reflection.txt
+using System;
+
+class A {
+	shared void Main() {
+		A a = new A();		
+		Console.WriteLine(a is A);
+
+		Type type = typeof(A);		
+		Console.WriteLine(type.ToString());
+		
+		object o = a;
+		Console.WriteLine(o is A);
+		
+		A b = o as A;		
+		Console.WriteLine(b);
+	}
+}
+
+--- .\permutations\permutations.txt
+using System;
+
+class Permutations {	
+	bool NextPermutation(int[] a, int first, int last) {
+		if(first == last)
+			return false;
+			
+		int i = first;
+		++i;
+		if(i == last)
+			return false;
+			
+		i = last;
+		--i;
+		
+		while(true) {
+			int ii = i;
+			--i;
+			if(a[i] < a[ii]) {
+				int j = last;
+				while(!(a[i] < a[--j])) {}
+				Swap(a, i, j);
+				Reverse(a, ii, last);
+				return true;
+			}
+			if(i == first) {
+				Reverse(a, first, last);
+				return false;
+			}
+		}
+	}
+
+	void Swap(int[] a, int i, int j) {
+		int tmp = a[i];
+		a[i] = a[j];
+		a[j] = tmp;
+	}
+	
+	void Reverse(int[] a, int first, int last) {
+		while(first < last) {
+			Swap(a, first, --last);
+			++first;
+		}
+	}
+
+	shared void Main() {
+		Permutations p = new Permutations();
+		int[] t = new int[5];
+		t[0] = 1;
+		t[1] = 2;
+		t[2] = 3;
+		t[3] = 4;
+		t[4] = 5;
+		do {
+			for(int i = 0; i < 5; ++i)
+				Console.Write(t[i].ToString() + " ");
+			Console.WriteLine();	
+		} while(p.NextPermutation(t, 0, 5));
+	}
+}
+
+--- .\scopes\scopes.txt
+using System;
+
+class A {
+	void Test(int z) {
+		Console.WriteLine(z);
+		{
+			int z = 1;
+			Console.WriteLine(z);
+			{
+				int z = 2;
+				Console.WriteLine(z);
+			}
+			Console.WriteLine(z);
+			z = 5;
+			Console.WriteLine(z);
+		}
+		Console.WriteLine(z);
+	}
+	
+	shared void Main() {
+		new A().Test(123);
+	}
+}
+
+--- .\signals\signal.txt
+using System;
+
+function void ClickHandler(object sender);
+
+class A {
+public:
+	signal ClickHandler OnClick;
+	
+	void MouseClicked() {
+		if(OnClick != null)
+			OnClick.Invoke(this);
+	}
+}
+
+class M {
+	shared void Main() {
+		A a = new A();
+		a.add_OnClick(new ClickHandler(MyClickHandler));
+		
+		a.MouseClicked();
+	}
+	
+	shared void MyClickHandler(object sender) {
+		Console.WriteLine("Sender object " + sender);
+	}
+}
+
+--- .\singleton\singleton.txt
+class Singleton {
+public:
+	shared Singleton GetInstance() {
+		if(instance == null)
+			instance = new Singleton();
+		return instance;
+	}
+	
+	int Value {
+		set { this.val = value; }
+		get { return this.val; }
+	}
+	
+private:
+	this() {
+	
+	}
+	
+	shared Singleton instance;
+	int val;
+}
+
+class A {
+	shared void Main() {
+		Singleton instance = Singleton.GetInstance();
+		instance.Value = 123;
+		
+		instance = null;
+		
+		instance = Singleton.GetInstance();
+		System.Console.WriteLine(instance.Value);
+	}
+}
+
+--- .\static\statics.txt
+using System;
+
+class A {
+	shared this() {
+		Console.WriteLine("Static constructor");
+	}
+	
+	shared int i;
+	
+	shared int Property {
+		get { return i; }
+		set { i = value; }
+	}
+	
+	shared void StaticMethod() {
+		Console.WriteLine("A::StaticMethod");
+	}
+	
+	shared void Main() {
+		A.Property = 1;
+		A.i = 123;
+		A.StaticMethod();
+	}
+}
+
+--- .\structs\struct.txt
+struct S {
+	this(int i) {
+		this.i = i;
+	}
+
+	void Test() {
+	
+	}
+	
+	int i;
+}
+
+class A {
+	shared void Main() {
+		int z = 1;
+		new S(z).Test();
+		
+		S s = new S(z);
+		s.i = 1;
+	}
+}
+
+--- .\typedef\typedef.txt
+using System;
+
+typedef C = Console;
+typedef ShortName = Ns.ThisIsAVeryLongNameOfSomeClass;
+
+namespace Ns {
+	class ThisIsAVeryLongNameOfSomeClass {
+	public:
+		void Method() {
+			C.WriteLine("ThisIsAVeryLongNameOfSomeClass::Method");
+		}
+	}
+}
+
+class A {
+	shared void Main() {
+		C.WriteLine("a");
+		
+		new ShortName().Method();
+	}
+}
+
+--- .\types\built-in-types.txt
+class A {
+	shared void Main() {
+		object o = null;
+		bool b = true;
+		char c = 'a';
+		sbyte sb = -20;
+		byte bt = 230u;
+		short s = -30000;
+		ushort us = 60000u;
+		int i = -2000000000;
+		uint ui = 4000000000u;
+		long l = -9000000000000000000l;
+		ulong ul = 18000000000000000000ul;
+		float f = 3.4e38;
+		double d = 1.7e308d;
+		string str = "Hello World!";
+	}
+}
+
+--- .\var\var.txt
+using System;
+
+class A {
+public:
+	shared void Main() {
+		var i = 2000000000;
+		var s = "Hello world!";
+		var a = new A();
+		var f = 3.141592;
+		var t = new int[10];
+		
+		Console.WriteLine(i);
+		Console.WriteLine(s);
+		Console.WriteLine(a);
+		Console.WriteLine(f);
+		Console.WriteLine(t[0]);
+	}
+	
+	virtual string ToString() {
+		return "A class object";
+	}
+}
+
+--- .\window\basic-window.txt
+using System;
+using System.Windows.Forms;
+
+class MainWindow(Form) {
+public:	
+	this() {
+		this.Width = 500;
+		this.Height = 400;
+		this.Text = "My first window";
+						
+		this.button = new Button();
+		this.button.Text = "Click Me";
+		
+		this.button.add_Click(new EventHandler(OnClick));
+				
+		this.Controls.Add(label);
+		this.Controls.Add(button);
+	}
+
+family:
+	void OnClick(object sender, EventArgs e) {
+		MessageBox.Show("Clicked!");
+	}
+	
+private:
+	Label label;
+	Button button;
+}
+
+class A {		
+	shared void Main() {
+		Application.Run(new MainWindow());
+	}
+}
+
