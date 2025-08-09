@@ -29,9 +29,9 @@ NetSharp is a modern programming language designed as a superset of C#, compilin
 
 ### Installation
 
-1. Download the NetSharp compiler from the official repository.  
+1. Download the NetSharp compiler from the official repository.  (``https://github.com/hmZa-Sfyn/NetSharp-Lang``)
 2. Install the .NET runtime if not already present.  
-3. Add the NetSharp compiler to your system PATH for easy access.  
+3. Add the NetSharp compiler to your system PATH for easy access.  (``/versions/1/win/netsharp.exe``)
 4. Verify installation with:
 
 <code>netsharp --help</code>
