@@ -1,0 +1,8 @@
+using namespace App.Data from "UserData.ns";
+using System.Reflection;
+class Program {
+  shared void Main() {
+    var type = typeof(User);
+    System.Console.WriteLine($"Type: {type.FullName}");
+  }
+}

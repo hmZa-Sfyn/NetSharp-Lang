@@ -1,0 +1,9 @@
+using csharp "Logger.ns";
+typedef C = System.Console;
+class Program {
+  shared void Main() {
+    var logger = new Logger("Typedef");
+    C.WriteLine("Using Console alias");
+    logger.Log("Logged message");
+  }
+}

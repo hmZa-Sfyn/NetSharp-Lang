@@ -1,0 +1,5 @@
+module MathUtils {
+  public shared int Add(int a, int b) { return a + b; }
+  public shared int Multiply(int a, int b) { return a * b; }
+  public shared int Square(int x) { return x * x; }
+}

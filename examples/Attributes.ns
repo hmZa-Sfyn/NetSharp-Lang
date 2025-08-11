@@ -1,0 +1,10 @@
+using * from "MathUtils.ns";
+using System;
+[Obsolete("Use NewCalculate instead")]
+class Program {
+  shared void Calculate() { Console.WriteLine($"Old result: {MathUtils.Square(5)}"); }
+  shared void NewCalculate() { Console.WriteLine($"New result: {MathUtils.Square(6)}"); }
+  shared void Main() {
+    NewCalculate();
+  }
+}

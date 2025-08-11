@@ -1,0 +1,5 @@
+public class Logger {
+  private string _prefix;
+  public this(string prefix) { _prefix = prefix; }
+  public void Log(string message) { System.Console.WriteLine($"{_prefix}: {message}"); }
+}

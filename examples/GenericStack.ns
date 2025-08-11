@@ -1,0 +1,15 @@
+using * from "MathUtils.ns";
+class Stack<T> {
+  private T[] _items;
+  private int _idx;
+  public Stack(int size) { _items = new T[size]; _idx = 0; }
+  public void Push(T item) { _items[_idx++] = item; }
+  public T Pop() { return _items[--_idx]; }
+}
+class Program {
+  shared void Main() {
+    var stack = new Stack<int>(5);
+    stack.Push(MathUtils.Multiply(3, 4));
+    System.Console.WriteLine($"Popped: {stack.Pop()}");
+  }
+}

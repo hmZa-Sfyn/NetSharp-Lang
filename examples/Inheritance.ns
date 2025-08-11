@@ -1,0 +1,12 @@
+using class Logger from "Logger.ns";
+using System;
+class CustomLogger : Logger {
+  public this(string prefix) : base(prefix) {}
+  public void Log(string message) { Console.WriteLine($"[Custom] {message}"); }
+}
+class Program {
+  shared void Main() {
+    var logger = new CustomLogger("App");
+    logger.Log("Inherited logging");
+  }
+}

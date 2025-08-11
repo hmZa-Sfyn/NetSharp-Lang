@@ -1,0 +1,6 @@
+using * from "MathUtils.ns";
+class Program {
+  shared void Main() {
+    System.Console.WriteLine($"Sum: {MathUtils.Add(5, 3)}");
+  }
+}

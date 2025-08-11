@@ -1,0 +1,10 @@
+using namespace App.Data from "UserData.ns";
+using System.Linq;
+using System.Collections.Generic;
+class Program {
+  shared void Main() {
+    var users = new List<User> { new User("Alice", 25), new User("Bob", 17) };
+    var adults = from user in users where user.Age >= 18 select user.Name;
+    foreach (var name in adults) System.Console.WriteLine($"Adult: {name}");
+  }
+}

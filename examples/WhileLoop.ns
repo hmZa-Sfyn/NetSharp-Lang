@@ -1,0 +1,10 @@
+using netsharp "MathUtils.ns";
+using System;
+class Program {
+  shared void Main() {
+    var i = 0;
+    var sum = 0;
+    while (i < 5) sum = MathUtils.Add(sum, ++i);
+    Console.WriteLine($"Total: {sum}");
+  }
+}

@@ -1,0 +1,9 @@
+using class Logger from "Logger.ns";
+using System.Threading.Tasks;
+class Program {
+  shared async Task Main() {
+    var logger = new Logger("Async");
+    await Task.Delay(1000);
+    logger.Log("Async operation complete");
+  }
+}

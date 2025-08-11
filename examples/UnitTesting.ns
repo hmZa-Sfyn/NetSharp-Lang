@@ -1,0 +1,14 @@
+using * from "MathUtils.ns";
+using NUnit.Framework;
+[TestFixture]
+class Tests {
+  [Test]
+  public void TestAdd() {
+    Assert.AreEqual(8, MathUtils.Add(5, 3));
+  }
+}
+class Program {
+  shared void Main() {
+    System.Console.WriteLine("Run tests with NUnit runner");
+  }
+}

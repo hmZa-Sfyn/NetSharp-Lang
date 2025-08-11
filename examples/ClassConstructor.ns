@@ -1,0 +1,7 @@
+using namespace App.Data from "UserData.ns";
+class Program {
+  shared void Main() {
+    var user = new User("Charlie", 30);
+    System.Console.WriteLine($"User created: {user.Name}, Age: {user.Age}");
+  }
+}

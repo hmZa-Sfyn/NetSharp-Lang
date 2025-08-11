@@ -1,0 +1,15 @@
+using namespace App.Data from "UserData.ns";
+using System;
+class UserError : Exception {
+  public this(string msg) : base(msg) {}
+}
+class Program {
+  shared void Main() {
+    try {
+      var user = new User("", 20);
+      if (user.Name == "") raise new UserError("Empty name");
+    } catch (UserError e) {
+      Console.WriteLine($"Error: {e.Message}");
+    }
+  }
+}

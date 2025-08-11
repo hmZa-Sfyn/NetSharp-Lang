@@ -1,0 +1,8 @@
+using class Logger from "Logger.ns";
+class Program {
+  shared void Main() {
+    var logger = new Logger("Main");
+    string name = "Alice";
+    logger.Log($"Hello, {name}!");
+  }
+}

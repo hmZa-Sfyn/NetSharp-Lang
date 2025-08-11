@@ -1,0 +1,13 @@
+using class Logger from "Logger.ns";
+using * from "MathUtils.ns";
+using System;
+class Program {
+  shared void Main() {
+    var logger = new Logger("Switch");
+    var value = MathUtils.Add(1, 1);
+    switch (value) {
+      case 2: logger.Log("Two"); break;
+      default: logger.Log("Other"); break;
+    }
+  }
+}

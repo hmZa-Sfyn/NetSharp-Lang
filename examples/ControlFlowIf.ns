@@ -1,0 +1,9 @@
+using namespace App.Data from "UserData.ns";
+using System;
+class Program {
+  shared void Main() {
+    var user = new User("Bob", 25);
+    if (user.Age >= 18) Console.WriteLine($"{user.Name} is an adult");
+    else Console.WriteLine($"{user.Name} is a minor");
+  }
+}

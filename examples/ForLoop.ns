@@ -1,0 +1,7 @@
+using csharp "Logger.ns";
+class Program {
+  shared void Main() {
+    var logger = new Logger("Loop");
+    for (var i = 1; i <= 3; i++) logger.Log($"Iteration {i}");
+  }
+}

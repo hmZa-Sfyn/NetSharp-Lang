@@ -1,0 +1,13 @@
+using * from "MathUtils.ns";
+using System;
+class Calculator {
+  public signal void OnResult(int result);
+  public void Compute(int a, int b) { OnResult?.Invoke(MathUtils.Add(a, b)); }
+}
+class Program {
+  shared void Main() {
+    var calc = new Calculator();
+    calc.add_OnResult((result) => Console.WriteLine($"Result: {result}"));
+    calc.Compute(4, 5);
+  }
+}
